@@ -1,0 +1,72 @@
+<div class="container row">
+    <div class="col-lg-4">
+        <label for="">Select State</label>
+        <!-- <input type="hidden"> -->
+        <select id="state" (change)="statechanged($event)" class="form-control mb-4" value="{{ mystateid }}">
+            <option value="">Select State</option>
+            <option *ngFor="let state of states" value="{{state.id}}">{{state.state}}</option>
+        </select>
+
+        <label for="">Select Division</label>
+        <select id="division" (change)="divisionchanged($event)" class="form-control mb-4">
+            <option value="">Select Division</option>
+            <option *ngFor="let division of divisions" value="{{division.id}}" [selected]="division.id == mydivisionid" >{{division.division}}</option>
+        </select>
+
+        <label for="">Select District</label>
+        <select id="district" (change)="districtchanged($event)" class="form-control mb-4">
+            <option value="">Select District</option>
+            <option *ngFor="let district of districts" value="{{district.id}}"  [selected]="district.id == mydistrictid">{{district.district}}</option>
+
+        </select>
+
+        <label for="">Select Taluka</label>
+        <select id="taluka" (change)="talukachanged($event)" class="form-control mb-4">
+            <option value="">Select Taluka</option>
+            <option *ngFor="let tal of taluka" value="{{tal.id}}" [selected]="tal.id == mytalukaid">{{tal.taluka}}</option>
+        </select>
+
+        <label for="">Select Village</label>
+        <select id="village"  class="form-control mb-4">
+            <option value="">Select Village</option>
+            <option *ngFor="let dtName of villages" value="{{dtName.id}}" [selected]="dtName.id == myvillageid">{{dtName.name}}</option>
+        </select>
+        <hr>
+        <div>
+            <button class="btn btn-secondary"> Clear</button>
+            <button class="btn btn-primary ms-5" (click)="submit()">Submit</button>
+        </div>
+
+    </div>
+
+    <div class="col-lg-8">
+        <div class="col-lg-12">
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Sr.No</th>
+                    <th>State</th>
+                    <th>Division</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Edit/Delete</th>
+
+                </tr>
+                <tr *ngFor="value of values; let i = index">
+                    <td>{{i +1}}</td>
+                    <td>{{values[i].state}}</td>
+                    <td>{{values[i].division}}</td>
+                    <td>{{values[i].district}}</td>
+                    <td>{{values[i].taluka}}</td>
+                    <td>{{values[i].village}}</td>
+                    <td>
+                        <span class="btn btn-outline-primary "  (click)="editval(values[i].id)">Edit</span>
+                        <a class="btn btn-outline-warning " style="margin-left: 1%;"  (click)="deleteval(values[i].id)">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
